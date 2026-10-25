@@ -1,14 +1,28 @@
 import os
 import sys
+import traceback
 
 # Ensure backend directory is in python module search path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-import uvicorn
-from app.main import app
+port_str = os.getenv("X_ZOHO_CATALYST_LISTEN_PORT") or os.getenv("PORT") or "9000"
+port = int(port_str)
+print(f"[Catalyst] Starting MathQuest backend on port {port}...", flush=True)
 
-if __name__ == "__main__":
-    port_str = os.getenv("X_ZOHO_CATALYST_LISTEN_PORT") or os.getenv("PORT") or "9000"
-    port = int(port_str)
-    print(f"[Catalyst] Starting MathQuest AI server on host 0.0.0.0 port {port}...")
+try:
+    from app.main import app
+    import uvicorn
+    print(f"[Catalyst] App imported successfully. Launching Uvicorn on 0.0.0.0:{port}...", flush=True)
     uvicorn.run(app, host="0.0.0.0", port=port)
+except Exception as e:
+    print(f"[Catalyst Startup Error]: {e}", flush=True)
+    traceback.print_exc()
+    from http.server import HTTPServer, BaseHTTPRequestHandler
+    class FallbackHandler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(500)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(f'{{"error": "{str(e)}"}}\n'.encode())
+    server = HTTPServer(("0.0.0.0", port), FallbackHandler)
+    server.serve_forever()
