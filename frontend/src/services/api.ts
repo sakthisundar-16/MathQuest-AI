@@ -1,6 +1,7 @@
 import { Topic, DashboardData, QuizSummary, VideoLesson, AIExplanation, InfographicData, AnswerResult, Question } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const rawUrl = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api').trim().replace(/\/+$/, '');
+const API_BASE_URL = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
 
 export const getStudentId = (): string => {
   let id = localStorage.getItem('mathquest_student_id');
