@@ -1,9 +1,10 @@
 {
-  "command": "uvicorn app.main:app --host 0.0.0.0 --port ${X_ZOHO_CATALYST_LISTEN_PORT:-9000}",
-  "buildPath": "/",
-  "stack": "python3.11",
+  "command": "python main.py",
+  "buildPath": "C:\\Users\\sivan\\OneDrive\\Desktop\\plac teask1\\backend",
+  "stack": "python_3_9",
   "env_variables": {
-    "PROJECT_NAME": "MathQuest AI"
+    "PROJECT_NAME": "MathQuest AI",
+    "DATABASE_NAME": "mathquest_db"
   },
   "memory": 256
 }
