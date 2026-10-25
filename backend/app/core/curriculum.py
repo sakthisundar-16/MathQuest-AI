@@ -3,7 +3,7 @@ Georgia Mathematics Standards (GMS) Topic Catalog & Learning Objectives
 Covers Grades 5 & 6 standards with verified mathematical alignments.
 """
 
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 
 # Georgia Mathematics Standards Aligned Catalog for Grade 5 and Grade 6
 CURRICULUM_CATALOG: Dict[str, Dict[str, Any]] = {
@@ -287,6 +287,6 @@ def get_topics_for_grade(grade: int) -> List[Dict[str, Any]]:
     return [t for t in CURRICULUM_CATALOG.values() if t["grade"] == grade]
 
 
-def get_topic_by_id(topic_id: str) -> Optional[Dict[str, Any]]:
+def get_topic_by_id(topic_id: str) -> Dict[str, Any] | None:
     """Return topic specification by topic_id."""
     return CURRICULUM_CATALOG.get(topic_id)

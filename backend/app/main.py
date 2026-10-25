@@ -28,10 +28,10 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS setup
+# CORS setup — use explicit origins (wildcard + credentials is rejected by browsers)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permits local Vite frontend & production Vercel
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
