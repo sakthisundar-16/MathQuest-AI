@@ -1,0 +1,10 @@
+Full Name: Sakthi Sundar P
+Register Number: 921023104035
+College Name: Nadar Saraswathi College of Engineering & Technology
+Department: Department of Computer Science and Engineering (B.E. CSE)
+Year of Study / Expected Graduation Year:  Final Year / 2023 - 2027 (Expected Graduation: 2027)
+Mobile Number: +91 8122592152
+Email Address: sakthisundar5002@gmail.com
+Task Chosen: Task 1 (Gamified Math Learning Platform for Grades 5 and 6)
+Live Demo URL: https://mathquest-ai.vercel.app
+GitHub Repository URL: https://github.com/sakthisundar-16/MathQuest-AI
