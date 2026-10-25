@@ -375,6 +375,53 @@ npm run build
 
 ---
 
+## 🎯 Instructions for Testing Main Features (Reviewer Evaluation Guide)
+
+Follow this quick walkthrough to test all core capabilities of MathQuest AI:
+
+### 1. Grade Exploration & Adaptive Theming
+- Open the [Live Demo](https://mathquest-ai.vercel.app).
+- Click **"Begin Math Adventure"** on the 3D Arcade Intro screen.
+- In the top navigation bar, toggle between **Grade 5 (Morning Sky)** and **Grade 6 (Sunset Dusk)**. Notice the dynamic visual theme shift and curriculum topics update automatically.
+
+### 2. Interactive Video Lessons & Multimodal Learning
+- Click **"Topics"** in the navigation bar.
+- Select any topic (e.g., *Fractions & Mixed Numbers*).
+- Click **"Watch Video Lesson"** to launch the interactive video studio.
+- Navigate through lesson chapters, step-by-step whiteboard animations, and real-world story contexts.
+
+### 3. Interactive Virtual Manipulative (Fraction Pizza Studio)
+- From the Topics page or Practice area, launch the **Fraction Pizza Studio**.
+- Use the slice sliders to divide the pizza into $2$, $4$, $8$, or $12$ slices.
+- Click individual slices to highlight them and observe equivalent fraction reductions update in real-time.
+
+### 4. Adaptive Quiz Arena & Deterministic SymPy Validation
+- Click **"Start Practice"** on any topic.
+- Answer questions across different difficulty tiers (**Explorer**, **Adventurer**, **Master**).
+- **Test Math Equivalence:** For fraction questions, enter answers in various formats (e.g., `2/4`, `1/2`, or `0.5`). The backend uses **SymPy** and Python AST to verify mathematical equivalence deterministically without LLM hallucination.
+
+### 5. Live Socratic AI Tutor
+- During any quiz question, click the **"Ask AI Tutor"** button in the bottom corner.
+- Ask questions like: *"Can you give me a hint without telling the answer?"* or *"Why do we need a common denominator?"*.
+- The tutor uses structured Socratic prompts powered by **Google Gemini** to guide you step-by-step without giving away the final answer.
+
+### 6. Student Progress & Gamification Dashboard
+- Click **"Progress"** or **"Dashboard"** from the navigation bar.
+- Inspect real-time XP accumulation, level progression, active daily streaks, and topic-level accuracy radar charts.
+
+---
+
+## ⚠️ Known Limitations & Future Roadmap
+
+| Area | Current Status | Future Roadmap |
+| :--- | :--- | :--- |
+| **Cloud Hosting Cold Start** | Render free-tier backend sleeps after inactivity and may take ~30s on first load. | Migrating to always-on serverless edge functions or dedicated compute instance. |
+| **Offline Resilience** | Frontend includes verified fallback curriculum data so users can still learn and practice even during backend cold starts. | Add complete IndexedDB offline sync via PWA (Progressive Web App) service workers. |
+| **Audio & Speech** | Spatial audio sound effects synthesized via Web Audio API. | Incorporate bidirectional Web Speech API for voice question reading and spoken voice answers. |
+| **Multiplayer / Classroom** | Single-student reinforcement learning model. | Teacher analytics portal, Google Classroom roster sync, and multiplayer head-to-head math battles. |
+
+---
+
 ## 🛡️ License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
