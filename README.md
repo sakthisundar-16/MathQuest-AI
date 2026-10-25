@@ -11,13 +11,15 @@
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-14.0-FF0055?logo=framer&logoColor=white&style=for-the-badge)
 ![Tests](https://img.shields.io/badge/Pytest-18%2F18%20Passed-22C55E?logo=pytest&logoColor=white&style=for-the-badge)
 ![GSE](https://img.shields.io/badge/Georgia_GSE-100%25_Aligned-F59E0B?style=for-the-badge)
+![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?logo=vercel&logoColor=white&style=for-the-badge)
+![MongoDB Atlas](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?logo=mongodb&logoColor=white&style=for-the-badge)
 
 <p align="center">
   <b>An interactive, curriculum-aligned STEM math adventure inspired by platforms like IXL, designed specifically for Grade 5 and Grade 6 learners.</b><br>
   Featuring AI-driven Socratic whiteboard tutoring, deterministic math verification, interactive video lessons, virtual manipulatives, and real-time reinforcement learning adaptation.
 </p>
 
-[Explore Live Demo](http://localhost:5173) • [API Documentation](http://localhost:8000/docs) • [Georgia Standards (GSE)](#-georgia-mathematics-standards-alignment) • [Quickstart](#-quickstart-guide)
+[🌐 Live Demo](https://mathquest-ai.vercel.app) • [⚡ API Backend](https://mathquest-ai-kbbd.onrender.com/docs) • [Georgia Standards (GSE)](#-georgia-mathematics-standards-alignment) • [Quickstart](#-quickstart-guide) • [Cloud Deployment](#-cloud-deployment)
 
 </div>
 
@@ -215,12 +217,56 @@ MathQuest-AI/
 │   ├── package.json
 │   ├── tailwind.config.js
 │   └── vite.config.ts
+├── api/
+│   ├── index.py                      # Vercel Serverless Function entry point for FastAPI
+│   └── requirements.txt              # Python dependencies for Vercel runtime
 ├── docs/
 │   └── screenshots/                  # High-resolution platform preview captures
 ├── .gitignore
 ├── LICENSE
-└── README.md
+├── README.md
+├── requirements.txt                  # Root-level requirements for cloud builders
+└── vercel.json                       # Vercel multi-service deployment configuration
 ```
+
+---
+
+## ☁️ Cloud Deployment
+
+MathQuest AI is fully deployed on production cloud infrastructure:
+
+| Service | Platform | URL |
+| :--- | :--- | :--- |
+| **Frontend** (React + Vite) | Vercel | [mathquest-ai.vercel.app](https://mathquest-ai.vercel.app) |
+| **Backend** (FastAPI) | Render | [mathquest-ai-kbbd.onrender.com](https://mathquest-ai-kbbd.onrender.com) |
+| **Database** | MongoDB Atlas (M0 Free Tier) | Cluster0 — Singapore region |
+
+### Vercel Deployment (Frontend + Serverless API)
+
+The project uses `vercel.json` for multi-service routing:
+- All `/api/*` requests are routed to the FastAPI backend (Render).
+- All other `/*` requests are served by the Vite React frontend.
+
+```bash
+# Frontend auto-deploys on every push to main branch via Vercel GitHub integration
+git push origin main
+```
+
+### Environment Variables Required
+
+**Vercel (Frontend):**
+| Variable | Value |
+| :--- | :--- |
+| `VITE_API_URL` | `https://mathquest-ai-kbbd.onrender.com` |
+
+**Render (Backend):**
+| Variable | Value |
+| :--- | :--- |
+| `MONGODB_URI` | `mongodb+srv://<user>:<password>@cluster0.tw9564p.mongodb.net/mathquest_db` |
+| `DATABASE_NAME` | `mathquest_db` |
+| `PROJECT_NAME` | `MathQuest AI` |
+| `GEMINI_MODEL` | `gemini-2.5-flash` |
+| `GEMINI_API_KEY` | *(Your Google Gemini API Key)* |
 
 ---
 
@@ -337,5 +383,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <div align="center">
   <b>Built with ❤️ for Grade 5 and Grade 6 Math Explorers Everywhere.</b><br>
-  <i>Empowering students with confidence, curiosity, and mathematical mastery.</i>
+  <i>Empowering students with confidence, curiosity, and mathematical mastery.</i><br><br>
+  🌐 <a href="https://mathquest-ai.vercel.app"><b>Live at mathquest-ai.vercel.app</b></a> &nbsp;•&nbsp;
+  ⚡ <a href="https://mathquest-ai-kbbd.onrender.com/docs"><b>API Docs</b></a>
 </div>
