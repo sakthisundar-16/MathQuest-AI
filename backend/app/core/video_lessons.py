@@ -3,7 +3,7 @@ Video-style Slide Lessons with Narration Scripts
 Georgia standards aligned slide lessons with interactive checkpoints.
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 VIDEO_LESSONS: Dict[str, Dict[str, Any]] = {
     "g5-fractions": {
@@ -758,7 +758,7 @@ VIDEO_LESSONS: Dict[str, Dict[str, Any]] = {
 }
 
 
-def get_video_lesson(topic_id: str) -> Dict[str, Any] | None:
+def get_video_lesson(topic_id: str) -> Optional[Dict[str, Any]]:
     """
     Returns slide lesson structure with full narration scripts.
     Resolves exact topic, or finds closest keyword match before falling back.

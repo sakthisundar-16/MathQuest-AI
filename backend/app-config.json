@@ -1,10 +1,11 @@
 {
-  "command": "python main.py",
-  "buildPath": "C:\\Users\\sivan\\OneDrive\\Desktop\\plac teask1\\backend",
+  "command": "python3 main.py",
+  "buildPath": ".",
   "stack": "python_3_9",
   "env_variables": {
     "PROJECT_NAME": "MathQuest AI",
-    "DATABASE_NAME": "mathquest_db"
+    "DATABASE_NAME": "mathquest_db",
+    "PYTHONUNBUFFERED": "1"
   },
   "memory": 256
 }

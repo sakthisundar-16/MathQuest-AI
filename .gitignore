@@ -37,3 +37,8 @@ Thumbs.db
 
 # Temporary or Scratch
 scratch/
+*.tar
+*.tar.gz
+*.zip
+backend/lib/
+.catalystrc

@@ -2,8 +2,12 @@ import os
 import sys
 import traceback
 
-# Ensure backend directory is in python module search path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Ensure both backend root and bundled Linux lib directory are in sys.path
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+lib_dir = os.path.join(backend_dir, "lib")
+if os.path.exists(lib_dir):
+    sys.path.insert(0, lib_dir)
+sys.path.insert(0, backend_dir)
 
 port_str = os.getenv("X_ZOHO_CATALYST_LISTEN_PORT") or os.getenv("PORT") or "9000"
 port = int(port_str)
