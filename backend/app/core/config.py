@@ -11,9 +11,9 @@ class Settings:
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     GEMINI_IMAGE_MODEL: str = os.getenv("GEMINI_IMAGE_MODEL", "imagen-3.0-generate-002")
-    MONGODB_URI: str = os.getenv("MONGODB_URI", "mongodb://localhost:27017/")
+    MONGODB_URI: str = os.getenv("MONGODB_URI", "")
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "mathquest_db")
-    PORT: int = int(os.getenv("PORT", 8000))
+    PORT: int = int(os.getenv("PORT") or os.getenv("X_ZOHO_CATALYST_LISTEN_PORT") or 8000)
     CORS_ORIGINS: list = [
         "http://localhost:5173",
         "http://localhost:3000",
