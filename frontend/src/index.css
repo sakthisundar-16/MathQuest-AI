@@ -1,0 +1,331 @@
+@import "tailwindcss";
+
+:root {
+  /* ─── TYPOGRAPHY ─── */
+  --font-heading: 'Fredoka', system-ui, -apple-system, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, sans-serif;
+
+  /* ─── PALETTE TOKENS ─── */
+  --color-sunshine: #FFD23F;
+  --color-sunshine-shadow: #C49405;
+  --color-grape: #2563EB;
+  --color-grape-shadow: #1D4ED8;
+  --color-candy-pink: #FF6FB5;
+  --color-candy-pink-shadow: #D83F8C;
+  --color-mint: #3DDC97;
+  --color-mint-shadow: #1FA86A;
+  --color-coral: #FF7A59;
+  --color-coral-shadow: #D95333;
+  --color-ink: #1E1B4B;
+  --color-card: #FFFFFF;
+  --color-card-border: #BAE6FD;
+
+  /* ─── REALM ATMOSPHERES (Grade 5 Default: Morning Bright) ─── */
+  --realm-sky-top: #7DD3FC;
+  --realm-sky-mid: #E0F2FE;
+  --realm-sky-bottom: #F0F9FF;
+  --realm-cloud: #FFFFFF;
+  --realm-cloud-glow: rgba(186, 230, 253, 0.6);
+  --realm-island-grass-top: #4ADE80;
+  --realm-island-grass-base: #22C55E;
+  --realm-island-earth: #854D0E;
+  --realm-ambient-tint: rgba(125, 211, 252, 0.15);
+
+  /* ─── MOTION SYSTEM TOKENS ─── */
+  --spring-stiffness: 260;
+  --spring-damping: 18;
+  --ease-ui: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-ui: 250ms;
+
+  font-family: var(--font-body);
+  color-scheme: light;
+}
+
+/* ─── GRADE 6 REALM: GOLDEN HOUR / DUSK ─── */
+[data-grade="6"], .theme-grade-6 {
+  --realm-sky-top: #FDBA74;
+  --realm-sky-mid: #F472B6;
+  --realm-sky-bottom: #A78BFA;
+  --realm-cloud: #FFF1F2;
+  --realm-cloud-glow: rgba(251, 146, 60, 0.35);
+  --realm-island-grass-top: #FCD34D;
+  --realm-island-grass-base: #D97706;
+  --realm-island-earth: #78350F;
+  --realm-ambient-tint: rgba(244, 114, 182, 0.15);
+}
+
+/* ─── GLOBAL BASE & ACCESSIBILITY ─── */
+html {
+  font-size: 16px; /* Hard rule: Minimum 16px baseline */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* 18px body default for 10-12 yr olds */
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: linear-gradient(180deg, var(--realm-sky-top) 0%, var(--realm-sky-mid) 40%, var(--realm-sky-bottom) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  line-height: 1.25;
+}
+
+/* Accessible focus ring */
+*:focus-visible {
+  outline: 3px solid var(--color-grape);
+  outline-offset: 3px;
+}
+
+/* Touch targets min 56px utility */
+.touch-target-kid {
+  min-height: 56px;
+  min-width: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── CHUNKY 3D PRESSABLE TACTILE BUTTONS ─── */
+.btn-chunky {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.25rem; /* 20px min button text */
+  font-weight: 700;
+  padding: 0.85rem 1.75rem;
+  min-height: 56px;
+  border-radius: 26px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transform: translateY(0);
+  transition: transform 0.08s var(--ease-ui), border-bottom-width 0.08s var(--ease-ui), filter 0.15s ease;
+  will-change: transform;
+}
+
+.btn-chunky:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.btn-chunky:active {
+  transform: translateY(4px);
+  filter: brightness(0.98);
+}
+
+/* Primary Grape */
+.btn-chunky-primary {
+  background: var(--color-grape);
+  color: #FFFFFF;
+  border-bottom: 5px solid var(--color-grape-shadow);
+  box-shadow: 0 8px 20px rgba(124, 77, 255, 0.35);
+}
+.btn-chunky-primary:hover {
+  border-bottom-width: 7px;
+  box-shadow: 0 10px 24px rgba(124, 77, 255, 0.45);
+}
+.btn-chunky-primary:active {
+  border-bottom-width: 2px;
+  box-shadow: 0 4px 10px rgba(124, 77, 255, 0.3);
+}
+
+/* Accent Sunshine */
+.btn-chunky-accent {
+  background: var(--color-sunshine);
+  color: #1E1B4B;
+  border-bottom: 5px solid var(--color-sunshine-shadow);
+  box-shadow: 0 8px 20px rgba(255, 210, 63, 0.4);
+}
+.btn-chunky-accent:hover {
+  border-bottom-width: 7px;
+  box-shadow: 0 10px 24px rgba(255, 210, 63, 0.5);
+}
+.btn-chunky-accent:active {
+  border-bottom-width: 2px;
+  box-shadow: 0 4px 10px rgba(255, 210, 63, 0.3);
+}
+
+/* Mint Success */
+.btn-chunky-mint {
+  background: var(--color-mint);
+  color: #064E3B;
+  border-bottom: 5px solid var(--color-mint-shadow);
+  box-shadow: 0 8px 20px rgba(61, 220, 151, 0.35);
+}
+.btn-chunky-mint:hover {
+  border-bottom-width: 7px;
+}
+.btn-chunky-mint:active {
+  border-bottom-width: 2px;
+}
+
+/* Coral Flame */
+.btn-chunky-coral {
+  background: var(--color-coral);
+  color: #FFFFFF;
+  border-bottom: 5px solid var(--color-coral-shadow);
+  box-shadow: 0 8px 20px rgba(255, 122, 89, 0.35);
+}
+.btn-chunky-coral:hover {
+  border-bottom-width: 7px;
+}
+.btn-chunky-coral:active {
+  border-bottom-width: 2px;
+}
+
+/* White Cloud */
+.btn-chunky-white {
+  background: #FFFFFF;
+  color: var(--color-ink);
+  border: 2px solid #E2E8F0;
+  border-bottom: 5px solid #CBD5E1;
+  box-shadow: 0 6px 16px rgba(30, 27, 75, 0.08);
+}
+.btn-chunky-white:hover {
+  border-bottom-width: 7px;
+  border-color: #CBD5E1;
+}
+.btn-chunky-white:active {
+  border-bottom-width: 2px;
+}
+
+/* ─── CARDS & SURFACES ─── */
+.island-card {
+  background: var(--color-card);
+  border: 3px solid var(--color-card-border);
+  border-radius: 28px;
+  box-shadow: 0 12px 30px rgba(30, 27, 75, 0.06), 0 4px 0 rgba(186, 230, 253, 0.5);
+  transition: transform 0.2s var(--ease-ui), box-shadow 0.2s var(--ease-ui);
+}
+
+.island-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(30, 27, 75, 0.1), 0 6px 0 rgba(186, 230, 253, 0.7);
+}
+
+/* ─── 4-8s SINE AMBIENT LOOPS & KEYFRAMES (Transform/Opacity only) ─── */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+@keyframes cloud-drift-left {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(35px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes cloud-drift-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-35px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes mascot-breath {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-4px) scaleY(1.02);
+  }
+}
+
+@keyframes mascot-blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cloud-drift-1 {
+  animation: cloud-drift-left 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cloud-drift-2 {
+  animation: cloud-drift-right 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-sparkle-pulse {
+  animation: sparkle-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes moveStripe {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 32px 0;
+  }
+}
+
+/* ─── ACCESSIBILITY: REDUCED MOTION PREFERENCE ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
